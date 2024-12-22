@@ -4,7 +4,6 @@ import Content from "./Content";
 import Footer from "./Footer";
 import Header from "./Header";
 import AddItem from "./AddItem";
-import SearchItem from "./SearchItem";
 
 function App() {
   // content data and function
@@ -12,7 +11,6 @@ function App() {
     JSON.parse(localStorage.getItem("shoppinglist"))
   );
   const [newItem, setNewItem] = React.useState("");
-  const [search, setSearch] = React.useState("");
 
   const setAndSaveItems = (newListItems) => {
     setItems(newListItems);
@@ -53,14 +51,7 @@ function App() {
         setNewItem={setNewItem}
         handleSubmit={handleSubmit}
       />
-      <SearchItem search={search} setSearch={setSearch} />
-      <Content
-        items={items.filter((item) =>
-          item.item.toLowerCase().includes(search.toLowerCase())
-        )}
-        handleCheck={handleCheck}
-        handleDelete={handleDelete}
-      />
+      <Content handleCheck={handleCheck} handleDelete={handleDelete} />
       <Footer length={items.length} />
     </div>
   );
